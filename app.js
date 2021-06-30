@@ -59,13 +59,13 @@ const app = () => {
     song.ontimeupdate = () => {
         let currentTime = song.currentTime;
         let elapsed = fakeDuration - currentTime;
-        let seconds = Math.floor(elapsed % 60);
+        let seconds = `0${Math.floor(elapsed % 60)}`;
         let minutes = Math.floor(elapsed / 60);
 
         let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
         outline.style.strokeDashoffset = progress;
     
-        timeDisplay.textContent = `${minutes}:${seconds}`;
+        timeDisplay.textContent = `${minutes}:${seconds.substr(-2)}`;
 
         if (currentTime >= fakeDuration){
             song.pause();
